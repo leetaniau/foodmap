@@ -1,35 +1,28 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type FoodResource, type InsertFoodResource } from "@shared/schema";
+import { db } from "./db";
+import { foodResources } from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getFoodResources(): Promise<FoodResource[]>;
+  getFoodResource(id: string): Promise<FoodResource | undefined>;
+  createFoodResource(resource: InsertFoodResource): Promise<FoodResource>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DbStorage implements IStorage {
+  async getFoodResources(): Promise<FoodResource[]> {
+    return await db.select().from(foodResources);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getFoodResource(id: string): Promise<FoodResource | undefined> {
+    const results = await db.select().from(foodResources).where(eq(foodResources.id, id));
+    return results[0];
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createFoodResource(resource: InsertFoodResource): Promise<FoodResource> {
+    const results = await db.insert(foodResources).values(resource).returning();
+    return results[0];
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DbStorage();

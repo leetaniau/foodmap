@@ -4,9 +4,10 @@ import ResourceCard from './ResourceCard';
 interface ResourceListProps {
   resources: FoodResource[];
   onResourceClick: (resource: FoodResource) => void;
+  onToggleFavorite?: (id: string, isFavorite: boolean) => void;
 }
 
-export default function ResourceList({ resources, onResourceClick }: ResourceListProps) {
+export default function ResourceList({ resources, onResourceClick, onToggleFavorite }: ResourceListProps) {
   if (resources.length === 0) {
     return (
       <div className="text-center py-12 px-4" data-testid="text-no-resources">

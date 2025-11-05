@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { MapPin, List } from 'lucide-react';
 import ResourceMap from '@/components/ResourceMap';
@@ -7,6 +8,7 @@ import ResourceList from '@/components/ResourceList';
 import ResourceDetail from '@/components/ResourceDetail';
 import AddToHomeModal from '@/components/AddToHomeModal';
 import { FoodResource } from '@shared/schema';
+import { queryClient, apiRequest } from '@/lib/queryClient';
 
 type View = 'map' | 'list' | 'detail';
 
@@ -18,68 +20,33 @@ export default function Home() {
   const [showAddToHome, setShowAddToHome] = useState(false);
   const [hasClickedResource, setHasClickedResource] = useState(false);
 
-  // Mock resources - todo: remove mock functionality
-  const mockResources: FoodResource[] = [
-    {
-      id: '1',
-      name: 'Cass Community Social Services',
-      type: 'Food Pantry',
-      address: '11850 Woodrow Wilson St, Detroit, MI 48206',
-      latitude: '42.3690',
-      longitude: '-83.0877',
-      hours: 'Mon-Fri 10AM-2PM',
-      isOpen: true,
-      distance: '0.4 mi'
-    },
-    {
-      id: '2',
-      name: 'Southwest Community Fridge',
-      type: 'Community Fridge',
-      address: '7310 W Vernor Hwy, Detroit, MI 48209',
-      latitude: '42.3185',
-      longitude: '-83.1201',
-      hours: '24/7',
-      isOpen: true,
-      distance: '1.2 mi'
-    },
-    {
-      id: '3',
-      name: 'Capuchin Soup Kitchen',
-      type: 'Hot Meal',
-      address: '4390 Conner St, Detroit, MI 48215',
-      latitude: '42.3827',
-      longitude: '-82.9898',
-      hours: 'Mon-Sat 11:30AM-1PM',
-      isOpen: false,
-      distance: '2.1 mi'
-    },
-    {
-      id: '4',
-      name: 'Gleaners Community Food Bank',
-      type: 'Food Pantry',
-      address: '2131 Beaufait St, Detroit, MI 48207',
-      latitude: '42.3505',
-      longitude: '-83.0245',
-      hours: 'Tue-Thu 9AM-4PM',
-      isOpen: true,
-      distance: '1.8 mi'
-    },
-    {
-      id: '5',
-      name: 'Midtown Community Fridge',
-      type: 'Community Fridge',
-      address: '4160 Cass Ave, Detroit, MI 48201',
-      latitude: '42.3504',
-      longitude: '-83.0642',
-      hours: '24/7',
-      isOpen: true,
-      distance: '0.7 mi'
-    },
-  ];
+  const { data: resources = [], isLoading } = useQuery<FoodResource[]>({
+    queryKey: ['/api/resources'],
+  });
 
-  const filteredResources = mockResources.filter(resource => {
+  const toggleFavoriteMutation = useMutation({
+    mutationFn: async ({ id, isFavorite }: { id: string; isFavorite: boolean }) => {
+      return await apiRequest(`/api/resources/${id}/favorite`, {
+        method: 'PATCH',
+        body: JSON.stringify({ isFavorite }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/resources'] });
+    },
+  });
+
+  const handleToggleFavorite = (id: string, isFavorite: boolean) => {
+    toggleFavoriteMutation.mutate({ id, isFavorite });
+  };
+
+  const filteredResources = resources.filter(resource => {
     if (activeFilter === 'All') return true;
     if (activeFilter === 'Open Now') return resource.isOpen;
+    if (activeFilter === 'Favorites') return resource.isFavorite;
     return resource.type === activeFilter;
   });
 
@@ -112,7 +79,16 @@ export default function Home() {
         resource={selectedResource}
         onBack={() => setView('map')}
         onSuggestUpdate={() => console.log('Suggest update clicked')}
+        onToggleFavorite={handleToggleFavorite}
       />
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <p className="text-lg text-muted-foreground">Loading resources...</p>
+      </div>
     );
   }
 

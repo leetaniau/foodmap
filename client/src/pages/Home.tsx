@@ -16,6 +16,7 @@ export default function Home() {
   const [selectedResource, setSelectedResource] = useState<FoodResource | null>(null);
   const [userLocation, setUserLocation] = useState<[number, number]>([42.3314, -83.0458]);
   const [showAddToHome, setShowAddToHome] = useState(false);
+  const [hasClickedResource, setHasClickedResource] = useState(false);
 
   // Mock resources - todo: remove mock functionality
   const mockResources: FoodResource[] = [
@@ -97,11 +98,13 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowAddToHome(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (hasClickedResource) {
+      const timer = setTimeout(() => {
+        setShowAddToHome(true);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [hasClickedResource]);
 
   if (view === 'detail' && selectedResource) {
     return (
@@ -163,6 +166,9 @@ export default function Home() {
             onResourceClick={(resource) => {
               setSelectedResource(resource);
               setView('detail');
+              if (!hasClickedResource) {
+                setHasClickedResource(true);
+              }
             }}
           />
         ) : (
@@ -172,6 +178,9 @@ export default function Home() {
               onResourceClick={(resource) => {
                 setSelectedResource(resource);
                 setView('detail');
+                if (!hasClickedResource) {
+                  setHasClickedResource(true);
+                }
               }}
             />
           </div>

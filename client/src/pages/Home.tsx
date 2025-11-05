@@ -114,8 +114,8 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-background">
-      <div className="p-4 pb-3 border-b space-y-3">
+    <div className="h-screen flex flex-col bg-background overflow-hidden">
+      <div className="flex-none p-3 border-b space-y-2">
         <div className="text-center">
           <h1 className="text-xl font-bold mb-1">Detroit Food Resources</h1>
           <p className="text-base text-muted-foreground">
@@ -125,7 +125,7 @@ export default function Home() {
         
         <Button
           onClick={handleUseLocation}
-          className="w-full min-h-12 text-base font-bold"
+          className="w-full min-h-11 text-base font-bold"
           data-testid="button-use-location"
         >
           <MapPin className="w-5 h-5 mr-2" />
@@ -154,7 +154,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex-1 relative overflow-hidden">
+      <div className="flex-1 min-h-0 relative overflow-hidden">
         {view === 'map' ? (
           <ResourceMap
             resources={filteredResources}
@@ -178,7 +178,7 @@ export default function Home() {
         )}
       </div>
 
-      <div className="border-t p-3">
+      <div className="flex-none border-t p-2">
         <FilterPills
           activeFilter={activeFilter}
           onFilterChange={setActiveFilter}

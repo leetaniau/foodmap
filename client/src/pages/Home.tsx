@@ -23,7 +23,12 @@ export default function Home() {
   const [hasClickedResource, setHasClickedResource] = useState(false);
 
   const { data: resources = [], isLoading } = useQuery<FoodResource[]>({
-    queryKey: ['/api/resources'],
+    queryKey: ['/api/resources', userLocation[0], userLocation[1]],
+    queryFn: async () => {
+      const response = await fetch(`/api/resources?lat=${userLocation[0]}&lng=${userLocation[1]}`);
+      if (!response.ok) throw new Error('Failed to fetch resources');
+      return response.json();
+    }
   });
 
   const filteredResources = resources.filter(resource => {

@@ -24,17 +24,13 @@ import {
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { insertSubmissionSchema, type InsertSubmission } from '@shared/schema';
 import { apiRequest } from '@/lib/queryClient';
+import AddressAutocomplete from '@/components/AddressAutocomplete';
 
 type SubmitResourceForm = InsertSubmission;
 
 export default function SubmitResource() {
   const [, setLocation] = useLocation();
   const [submitted, setSubmitted] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState<{
-    formatted: string;
-    lat: number;
-    lon: number;
-  } | null>(null);
 
   const form = useForm<SubmitResourceForm>({
     resolver: zodResolver(insertSubmissionSchema),
@@ -155,15 +151,17 @@ export default function SubmitResource() {
                   <FormItem>
                     <FormLabel>Address</FormLabel>
                     <FormControl>
-                      <div>
-                        <Input
-                          id="address-autocomplete"
-                          placeholder="Start typing an address..."
-                          className="min-h-11 text-base"
-                          data-testid="input-address"
-                          {...field}
-                        />
-                      </div>
+                      <AddressAutocomplete
+                        value={field.value}
+                        onChange={field.onChange}
+                        onSelect={(location) => {
+                          form.setValue('address', location.formatted);
+                          form.setValue('latitude', location.lat.toString());
+                          form.setValue('longitude', location.lon.toString());
+                        }}
+                        placeholder="Start typing an address..."
+                        data-testid="input-address"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { GeocoderAutocomplete } from '@geoapify/geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
-import { Input } from '@/components/ui/input';
 
 interface AddressAutocompleteProps {
   onSelect: (address: {
@@ -9,8 +8,6 @@ interface AddressAutocompleteProps {
     lat: number;
     lon: number;
   }) => void;
-  value: string;
-  onChange: (value: string) => void;
   placeholder?: string;
   className?: string;
   'data-testid'?: string;
@@ -18,17 +15,15 @@ interface AddressAutocompleteProps {
 
 export default function AddressAutocomplete({
   onSelect,
-  value,
-  onChange,
   placeholder = 'Start typing an address...',
-  className = 'min-h-11 text-base',
+  className = '',
   'data-testid': testId,
 }: AddressAutocompleteProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const autocompleteRef = useRef<GeocoderAutocomplete | null>(null);
 
   useEffect(() => {
-    if (!inputRef.current) return;
+    if (!containerRef.current) return;
 
     const apiKey = import.meta.env.VITE_GEOAPIFY_API_KEY;
     
@@ -38,7 +33,7 @@ export default function AddressAutocomplete({
     }
 
     const autocomplete = new GeocoderAutocomplete(
-      inputRef.current,
+      containerRef.current,
       apiKey,
       {
         placeholder,
@@ -66,24 +61,16 @@ export default function AddressAutocomplete({
       }
     });
 
-    autocomplete.on('input', (value: string) => {
-      onChange(value);
-    });
-
     autocompleteRef.current = autocomplete;
 
     return () => {
       autocomplete.off('select');
-      autocomplete.off('input');
     };
-  }, [onSelect, onChange, placeholder]);
+  }, [onSelect, placeholder]);
 
   return (
-    <Input
-      ref={inputRef}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder={placeholder}
+    <div 
+      ref={containerRef} 
       className={className}
       data-testid={testId}
     />

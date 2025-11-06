@@ -26,13 +26,24 @@ export default function AddToHomeModal({ isOpen, onClose }: AddToHomeModalProps)
           </div>
         </div>
 
-        <div className="space-y-3 text-base">
-          <p className="font-semibold">On iPhone (Safari):</p>
-          <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-            <li>Tap the Share button at the bottom of the screen</li>
-            <li>Scroll down and tap "Add to Home Screen"</li>
-            <li>Tap "Add" in the top right corner</li>
-          </ol>
+        <div className="space-y-4 text-base">
+          <div>
+            <p className="font-semibold mb-2">On iPhone (Safari):</p>
+            <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
+              <li>Tap the Share button at the bottom of the screen</li>
+              <li>Scroll down and tap "Add to Home Screen"</li>
+              <li>Tap "Add" in the top right corner</li>
+            </ol>
+          </div>
+          
+          <div>
+            <p className="font-semibold mb-2">On Android (Chrome):</p>
+            <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
+              <li>Tap the menu button (three dots) in the top right</li>
+              <li>Tap "Add to Home screen"</li>
+              <li>Tap "Add" to confirm</li>
+            </ol>
+          </div>
         </div>
 
         <Button

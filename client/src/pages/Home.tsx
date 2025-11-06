@@ -85,7 +85,7 @@ export default function Home() {
           <Button
             size="icon"
             variant="ghost"
-            className="absolute top-0 right-0"
+            className="absolute top-0 right-0 bg-[#114121] text-[#fff]"
             onClick={() => setLocation('/submit')}
             data-testid="button-add-resource"
           >

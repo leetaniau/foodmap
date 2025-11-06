@@ -245,7 +245,11 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+  }
+  
+  #root {
+    @apply overflow-x-hidden w-full;
   }
 
   h1, h2, h3, h4, h5, h6 {

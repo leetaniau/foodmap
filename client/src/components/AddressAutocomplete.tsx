@@ -21,14 +21,14 @@ export default function AddressAutocomplete({
   value,
   onChange,
   placeholder = 'Start typing an address...',
-  className,
+  className = 'min-h-11 text-base',
   'data-testid': testId,
 }: AddressAutocompleteProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const autocompleteRef = useRef<GeocoderAutocomplete | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!inputRef.current) return;
 
     const apiKey = import.meta.env.VITE_GEOAPIFY_API_KEY;
     
@@ -38,7 +38,7 @@ export default function AddressAutocomplete({
     }
 
     const autocomplete = new GeocoderAutocomplete(
-      containerRef.current,
+      inputRef.current,
       apiKey,
       {
         placeholder,
@@ -49,7 +49,7 @@ export default function AddressAutocomplete({
         },
         bias: {
           countrycode: ['us'],
-          proximity: { lat: 42.3314, lon: -83.0458 }, // Detroit center
+          proximity: { lat: 42.3314, lon: -83.0458 },
         },
       }
     );
@@ -79,6 +79,13 @@ export default function AddressAutocomplete({
   }, [onSelect, onChange, placeholder]);
 
   return (
-    <div ref={containerRef} data-testid={testId} />
+    <Input
+      ref={inputRef}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      className={className}
+      data-testid={testId}
+    />
   );
 }

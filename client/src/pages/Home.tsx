@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
-import { MapPin, List } from 'lucide-react';
+import { MapPin, List, Target } from 'lucide-react';
 import ResourceMap from '@/components/ResourceMap';
 import FilterPills, { FilterType } from '@/components/FilterPills';
 import ResourceList from '@/components/ResourceList';
@@ -90,7 +90,7 @@ export default function Home() {
           className="w-full min-h-11 text-base font-bold"
           data-testid="button-use-location"
         >
-          <MapPin className="w-5 h-5 mr-2" />
+          <Target className="w-5 h-5 mr-2" />
           Use My Location
         </Button>
 

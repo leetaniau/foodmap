@@ -8,6 +8,7 @@ import ResourceList from '@/components/ResourceList';
 import ResourceDetail from '@/components/ResourceDetail';
 import AddToHomeModal from '@/components/AddToHomeModal';
 import { FoodResource } from '@shared/schema';
+import logoImage from '@assets/ChatGPT Image Nov 6, 2025, 11_08_32 AM_1762445336591.png';
 
 type View = 'map' | 'list' | 'detail';
 
@@ -73,6 +74,12 @@ export default function Home() {
     <div className="h-screen-safe flex flex-col bg-background overflow-hidden">
       <div className="flex-none p-3 border-b space-y-2">
         <div className="text-center">
+          <img 
+            src={logoImage} 
+            alt="Food in the D" 
+            className="mx-auto w-48 h-auto mb-2"
+            data-testid="img-logo"
+          />
           <p className="text-base text-muted-foreground">
             Find free meals and groceries near you
           </p>

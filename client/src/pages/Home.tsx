@@ -63,14 +63,14 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="h-screen-safe flex items-center justify-center">
         <p className="text-lg text-muted-foreground">Loading resources...</p>
       </div>
     );
   }
 
   return (
-    <div className="h-screen flex flex-col bg-background overflow-hidden">
+    <div className="h-screen-safe flex flex-col bg-background overflow-hidden">
       <div className="flex-none p-3 border-b space-y-2">
         <div className="text-center">
           <h1 className="text-xl font-bold mb-1">Detroit Food Resources</h1>

@@ -363,4 +363,10 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  /* Mobile-safe viewport height utility */
+  .h-screen-safe {
+    height: 100vh;
+    height: var(--app-height);
+  }
 }

@@ -77,7 +77,7 @@ export default function Home() {
           <img 
             src={logoImage} 
             alt="Food in the D" 
-            className="mx-auto w-24 h-auto mb-2"
+            className="mx-auto w-40 h-auto mb-1"
             data-testid="img-logo"
           />
           <p className="text-base text-muted-foreground">

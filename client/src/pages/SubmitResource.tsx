@@ -148,7 +148,7 @@ export default function SubmitResource() {
                 control={form.control}
                 name="address"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="relative overflow-visible">
                     <FormLabel>Address</FormLabel>
                     <FormControl>
                       <AddressAutocomplete

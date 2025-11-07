@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { GeocoderAutocomplete } from '@geoapify/geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
-import { Input } from '@/components/ui/input';
 
 interface AddressAutocompleteProps {
   onSelect: (address: {
@@ -24,21 +23,26 @@ export default function AddressAutocomplete({
   className = 'min-h-11 text-base',
   'data-testid': testId,
 }: AddressAutocompleteProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const autocompleteRef = useRef<GeocoderAutocomplete | null>(null);
 
   useEffect(() => {
-    if (!inputRef.current) return;
+    if (!containerRef.current) return;
 
     const apiKey = import.meta.env.VITE_GEOAPIFY_API_KEY;
-    
+
     if (!apiKey) {
       console.warn('Geoapify API key not found. Address autocomplete will not work.');
       return;
     }
 
+    // Clear any existing autocomplete
+    if (autocompleteRef.current) {
+      containerRef.current.innerHTML = '';
+    }
+
     const autocomplete = new GeocoderAutocomplete(
-      inputRef.current,
+      containerRef.current,
       apiKey,
       {
         placeholder,
@@ -59,9 +63,10 @@ export default function AddressAutocomplete({
         const formatted = location.properties.formatted || location.properties.address_line1;
         const lat = location.properties.lat;
         const lon = location.properties.lon;
-        
+
         if (formatted && lat && lon) {
           onSelect({ formatted, lat, lon });
+          onChange(formatted);
         }
       }
     });
@@ -70,21 +75,35 @@ export default function AddressAutocomplete({
       onChange(value);
     });
 
+    // Set initial value if provided
+    if (value) {
+      autocomplete.setValue(value);
+    }
+
     autocompleteRef.current = autocomplete;
 
     return () => {
-      autocomplete.off('select');
-      autocomplete.off('input');
+      if (autocompleteRef.current) {
+        autocompleteRef.current.off('select');
+        autocompleteRef.current.off('input');
+      }
     };
-  }, [onSelect, onChange, placeholder]);
+  }, [placeholder]);
+
+  // Update value when it changes externally
+  useEffect(() => {
+    if (autocompleteRef.current && value !== undefined) {
+      const currentValue = autocompleteRef.current.getValue();
+      if (currentValue !== value) {
+        autocompleteRef.current.setValue(value);
+      }
+    }
+  }, [value]);
 
   return (
-    <Input
-      ref={inputRef}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder={placeholder}
-      className={className}
+    <div
+      ref={containerRef}
+      className={`geoapify-autocomplete-container ${className}`}
       data-testid={testId}
     />
   );

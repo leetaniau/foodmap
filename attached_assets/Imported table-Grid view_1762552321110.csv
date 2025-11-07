@@ -1,0 +1,104 @@
+﻿id,name,type,address,phone,latitude,longitude,hours,distance,appointment_required
+33910fbc-3f90-44b3-a058-c1e3d8015078,Gleaners Community Food Bank,Food Pantry,"2131 Beaufait St, Detroit, MI 48207",(313) 923-3535,42.3505,-83.0245,Tue-Thu 9AM-4PM,1.8 mi,
+79c52bcd-81a3-4ad5-a072-11ec0f1bdbe2,Midtown Community Fridge,Community Fridge,"4160 Cass Ave, Detroit, MI 48201",,42.3504,-83.0642,24/7,0.7 mi,
+83bcb99f-9545-4da4-b790-79b51138995f,Cass Community Social Services,Food Pantry,"11850 Woodrow Wilson St, Detroit, MI 48206",,42.3690,-83.0877,Mon-Fri 10AM-2PM,0.4 mi,
+890c9e10-9898-48c0-9fa8-407728299177,Southwest Community Fridge,Community Fridge,"7310 W Vernor Hwy, Detroit, MI 48209",,42.3185,-83.1201,24/7,1.2 mi,
+e5b7901a-d844-4df8-86b8-467bcfcc7057,Basilica of St. Anne de Detroit,Food Pantry,"1000 St. Anne St, Detroit, MI 48216",313-496-1701,42.3065,-83.0813,SAT: 11:00am - 1:00pm,,No
+a99d8837-3930-4e4e-9c1b-c235100bcb2c,Bethany Lutheran Church,Food Pantry,"11475 E. Outer Drive, Detroit, MI 48224",(313)885-7721,42.4146,-82.9468,WED: 2nd and 4th Wednesdays 12:30pm - 3:30pm,,Yes
+71872eb9-3b08-46e3-b511-273993efa1ff,Brightmoor Connection,Food Pantry,"20740 Grand River Ave, Detroit, MI 48219",(313)740-7688,42.4167,-83.2709,MON: 2:00pm - 6:30pm; TUE: 2:00pm - 6:30pm; WED: 10:00am - 1:00pm,,No
+62204939-1246-4260-a330-cec6ef24b529,Calvary Presbyterian Church,Food Pantry,"19125 Greenview Ave, Detroit, MI 48219",(313)537-2590,42.4277,-83.2657,SAT: 10:00am - 12:30pm,,No
+72dc11fe-e1c9-4bd3-99cc-58658cdbb536,Capuchin Soup Kitchen - Meldrum Soup Kitchen,Soup Kitchen,"1264 Meldrum St, Detroit, MI 48207",313-579-2100,42.3464,-83.0258,MON–FRI: 8:30am–9:00am (Breakfast); 11:00am–1:00pm (Lunch),,No
+a304c4c7-1492-46db-a955-06ecac5a2e96,Capuchin Soup Kitchen - Services Center Pantry,Food Pantry,"6333 Medbury St, Detroit, MI 48211",313-925-0514,42.3843,-83.0373,MON–FRI: 8:30am - 4:30pm,,Yes
+4d105052-d451-489a-b93a-7c1b46b307e0,Caring Community Center,Food Pantry,"14531 Grand River Ave, Detroit, MI 48227",,42.3878,-83.1888,SAT: 10:00am-1:00pm (First Saturday of the Month),,No
+b9c08267-904a-4d67-bbf3-fd41053e6694,Cass Community Care Services,Soup Kitchen,"18500 Woodrow Wilson St, Detroit, MI 48206",(313)883-2277,42.4195,-83.0972,MON–SUN: 7:00am - 5:00pm,,No
+ee48dbf5-0133-4837-8a33-8a927409c277,Center for the Works of Mercy,Food Pantry,"8642 Woodward Ave, Detroit, MI 48202",313-335-3261,42.3786,-83.0739,THU–FRI: 1:00pm - 4:00pm,,Yes
+4259bade-d30a-429b-9ab2-579c88c52732,Central United Methodist Church - The Noah Project,Food Pantry,"23 E. Adams, Detroit, MI 48226",(313)965-5422,42.3365,-83.0491,MON–THU: 10:30am–2:00pm,,No
+3958fe68-c119-4259-b2fa-fc1af64b2126,Citadel of Praise,Food Pantry,"20280 Lyndon, Detroit, MI 48223",(313)535-1500,42.4033,-83.2476,,,No
+d50b6443-db16-42f5-ad13-bd8510710d8b,Coalition on Temporary Shelter (C.O.T.S.),Food Pantry,"16630 Wyoming St, Detroit, MI 48221",,42.4164,-83.1598,,,No
+d3c75e74-6f02-444b-80d6-37badd18e6d1,Community Services CDC,Food Pantry,"11529 Linwood St, Detroit, MI 48206",(313)865-6770,42.3927,-83.1069,THU: 3rd Thursdays 10:00am–2:00pm; SAT: 10:00am–2:00pm,,No
+602d4da4-ad10-4c10-a321-696f2db3cccc,Conant Gardens,Food Pantry,"18801 Joseph Campau St, Detroit, MI 48234",(313)369-1227,42.4264,-83.0463,TUE: 10:00am–11:45am,,No
+f8a2152d-45d5-475d-b5af-6bfac33cb322,Crossroads of Michigan,Food Pantry,"2424 W. Grand Blvd, Detroit, MI 48208",313-831-2000,42.3692,-83.0918,MON–FRI: 10:00am–3:00pm; SUN: 11:00am–1:00pm (Hot Meal),,Yes
+2ff41530-6a09-4aeb-8f28-377f91593cac,Deo Gratias Ministries Detroit,Food Pantry,"15879 E. 7 Mile Rd, Detroit, MI 48205",(313) 743-0477,42.4387,-82.9613,TUE & FRI: 10:00am–2:00pm,,Yes
+44cac073-143e-48dd-978d-3312bfd3599d,Detroit Northwest Church - SDA,Food Pantry,"14301 Burt Rd, Detroit, MI 48223",(313)236-2899,42.3893,-83.2547,THU: 11:00am–2:00pm,,No
+750c30be-42a9-4322-857a-ee5b01b7b9a7,Dexter Avenue Baptist Church,Food Pantry,"3350 W. Davison, Detroit, MI 48238",313-869-4878,42.3882,-83.1131,THU: 2nd Thursdays 12:00pm–3:00pm,,No
+479cb35d-2ec7-4215-b91a-360983b255ff,Evangelical Covenant Church / City Covenant Church,Soup Kitchen,"13624 Stout, Detroit, MI 48223",(313)535-1084,42.3854,-83.2559,MON–THU: 4:00pm–6:30pm (Dinner),,No
+90a1405e-0f2c-4d56-8cd0-528ac00837a4,Food Hub at St. Cunegunda,Food Pantry,"5900 St. Lawrence St, Detroit, MI 48210",(313) 963-8880,42.3256,-83.1195,MON: 2:00pm–4:00pm; TUE: 1:00pm–2:30pm; THU: 5:00pm–6:00pm,,Yes
+3fcb775e-5cd1-4afd-9a9e-d6d36ef74290,Gospel Tabernacle Food Pantry,Food Pantry,"12935 Buena Vista, Detroit, MI 48227",,42.3881,-83.1849,SAT: 1st & 3rd Saturdays 12:00pm–2:00pm,,No
+bfb9c549-5858-4486-89d2-209fd796cd99,Grace Temple Church of God in Christ,Food Pantry,"12521 Dexter Ave, Detroit, MI 48206",(313) 931-6095,42.3924,-83.1075,THU: Week of each month's 2nd Monday 11:00am–1:00pm,,No
+4646dbe9-7120-4831-87c0-5f33646e2555,Greater Apostolic Temple Food Distribution,Food Pantry,"17950 Charest, Detroit, MI 48212",(313)826-0902,42.4177,-83.0589,WED: 2:00pm–4:00pm,,Yes
+76778c03-cf08-477e-8f2e-6d3048460e13,Greater Dequindre Church of God - Lifeline Food Pantry,Food Pantry,"1847 Sycamore St, Detroit, MI 48208",(313)285-9368,42.3627,-83.0865,SAT: 2nd & 4th Saturdays 12:00pm–3:00pm,,No
+864fac77-d0cc-4ad8-8054-c9e735d559a3,Greater Quinn A.M.E.,Food Pantry,"13501 Rosa Parks Blvd, Detroit, MI 48238",(313)867-8380,42.3899,-83.1288,MON–FRI: 9:00am–3:00pm,,Yes
+cde5d65e-80f7-40be-ae92-abadcc58ea94,In the Trenches,Food Pantry,"304 S. Morrell, Detroit, MI 48209",(313) 554-3533,42.3057,-83.1082,FRI: 3:30pm–4:30pm; SAT: 10:30am–11:30am,,No
+a6f28796-9919-4bca-91fc-e538e5b46ea5,Iroquois Ave Christ Lutheran – Iroquois Wise Coalition,Food Pantry,"2411 Iroquois Ave, Detroit, MI 48214",(313)921-2667,42.3533,-82.9812,FRI: 9:30am–12:00pm,,No
+9b05a838-efa1-4ffa-b817-82e962941659,Kadesh Missionary Baptist Church,Food Pantry,"20361 Plymouth Rd, Detroit, MI 48228",(313)272-7887,42.3666,-83.2445,WED: 12:00pm–1:00pm,,No
+73eaa696-8080-4602-ba40-65e1459f76e4,King David CDC,Food Pantry,"18001 Sunset, Detroit, MI 48234",(313)891-4160,42.4264,-83.0483,WED: 4th Wednesdays 12:00pm–2:00pm,,No
+82ce45fa-1ed9-4751-b753-fcac7f7c91b7,Detroit Friendship House/Harvest House (Walk-Up Only),Food Pantry,"9540 Conant St., Hamtramck, MI 48212",(313)871-7443,,,TUE: 2:00pm - 4:00pm; THU: 2:00pm - 4:00pm; SAT: 9:00am - 12:00pm,,No
+ddf45955-ea66-4ae5-be32-05d432a54f38,Our Lady Queen of Apostles Church,Food Pantry,"3851 Prescott Street, Hamtramck, MI 48212",(313) 891-1520,,,THU: 10:00am (carryout lunch + mini food distribution); FRI: 10:00am (4th Friday),,No
+eabc2fcf-93c3-4bad-9a52-72b7495ac24d,Kingdom Presence (Client Choice Pantry),Food Pantry,"26500 Grand River (Rear Entrance), Redford, MI 48240",313-533-1956,,,WED: 10:00am - 12:00pm,,No
+dfa38b90-765c-4284-8b8a-6f4718843cb6,Redford Interfaith Relief,Food Pantry,"18499 Beech Daly Rd., Redford, MI 48240",,,,,,Yes
+fef1ebc0-6109-41fb-ae5b-b18136b3e7a6,Kennedy Building - Ecorse Public Schools (Drive-Up Only),Food Pantry,"27225 West Outer Drive, Ecorse, MI 48229",,,,,,No
+4d453b5e-0c72-4577-a54f-1241154b4a9f,Mercy Market at the Center for Works of Mercy,Food Pantry,"10301 Woodward, Detroit, MI 48202",,,,MON: 10:00am - 3:00pm; WED: 10:00am - 3:00pm,,No
+0e8527b4-e26f-4f62-8f0c-d32ce69ab2bd,Metropolitan Baptist Church,Food Pantry,"13110 14th Street, Detroit, MI 48238",(313)869-6676,,,SAT: 3rd Saturdays 10:00am - 12:00pm,,No
+618fe035-feed-4e69-8f6d-c98da8ccad73,Metropolitan United Methodist,Food Pantry,"8000 Woodward Ave., Detroit, MI 48202",(313)875-7407,,,WED: 12:00pm - 2:00pm,,Yes
+4b3e445a-1eee-4fbe-822e-b5bd493ef014,Michigan Veterans Foundation,Food Pantry,"4626 Grand River Ave., Detroit, MI 48208",(313)831-5500,,,,,No
+66fd9d83-1b92-427d-9405-1b97b9611dad,Mt. Vernon Baptist Church Food Pantry,Food Pantry,"15125 Burt Road, Detroit, MI 48223",313-538-1355,,,THU: 2:00pm - 5:00pm,,No
+d417beb2-9acb-4fe1-a6ad-dfba9cd055da,Muslim Family Services / ICNA Relief,Food Pantry,"12500 Mitchell, Detroit, MI 48212",(313) 366-6800,,,TUE: 10:00am - 3:00pm; THU: 10:00am - 3:00pm,,No
+4598466d-3401-4b1b-897e-a5e4eae30203,My Father's Business (Choice Pantry),Food Pantry,"21001 Moross Rd., Detroit, MI 48236",(313) 936-1537,,,SAT: Check In: 9:00-11:00AM (see seasonal schedule),,No
+4b3d2f83-f5e6-427e-8997-02a9eec417ed,Nativity Of Our Lord Pantry,Food Pantry,"5900 McClellan, Detroit, MI 48213",(313)922-0033,,,THU: 1:00pm - 4:00pm,,No
+7ec43f68-c2a3-4f6a-85ae-a1c97b7cdaac,Nazarene Community Outreach – Drive-thru Produce Distribution,Food Pantry,"901 Melbourne Street, Detroit, MI 48211",,,,"MON: 11:00am - 12:30pm (1st, 2nd, 3rd Mondays)",,No
+fe24b1e6-755f-430f-bf4d-603dfe0207f2,New Hope Tabernacle Church,Food Pantry,"20221 Lahser Rd., Detroit, MI 48219",(313)535-7999,,,WED: Last Wednesdays 9:00am - 11:30am,,No
+ea9db899-34a5-4e0f-b10d-91d982ff6d17,New Liberty Community Services,Food Pantry,"8425 Fenkell, Detroit, MI 48238",(313)342-2424,,,WED: 4:00pm - 6:00pm,,No
+2746acf9-1493-4ce9-8112-d2b6e60ba717,New Mount Hermon Missionary Baptist Church (Pantry & Soup Kitchen),Food Pantry,"3225 S Deacon St., Detroit, MI 48217",(313)704-7396,,,TUE: 12:00pm - 2:00pm (Pantry); THU: 12:00pm - 2:00pm (Pantry); SAT: 3rd Saturdays 12:00pm - 2:00pm (Soup Kitchen),,Yes
+9651ea06-b765-4cf5-8c3c-211672166cc9,New Paradigm School (Drive-Up Only),Food Pantry,"4001 29th Street, Detroit, MI 48210",,,,,,No
+c3f9b5af-4c65-45d0-89e4-86c63ecbb969,New Visions Missionary Baptist Church,Food Pantry,"14548 Joy Road, Detroit, MI 48228",(313)870-8788,,,SAT: 10:00am - 12:45pm,,No
+b738dd58-48ea-4953-a77c-589005a0b6bb,Our Lady Queen of Angels,Food Pantry,"4200 Martin Street, Detroit, MI 48210",313-841-0783,,,FRI: 9:00am - 11:00am,,No
+a81ed63b-033a-48ee-84cf-2f6571cab8db,Our Lady Queen of Angels (Drive-Up Only),Food Pantry,"4200 Martin St., Detroit, MI 48210",313-841-0783,,,,,No
+d460a287-efc8-4334-a1a6-33a10ffbd6c2,PHG Urban Life Center,Food Pantry,"6495 W. Warren, Detroit, MI 48210",(313)897-2381,,,SAT: 3rd Saturdays 10:00am - 12:00pm,,No
+37a1783c-6268-4f2c-b8ac-739e361df30c,Perfecting Community Church (Drive-Up Only),Food Pantry,"7616 Nevada St., Detroit, MI 48234",,,,,,No
+64968e4c-374a-45aa-b5cf-91d7c90acd9e,Project Healthy Community @ Northwest Activity Center,Food Pantry,"Northwest Activity Center (See listing dates), Detroit, MI",(248)892-4585,,,THU: 4th Thursdays 8:00am - 12:00pm,,No
+76744b77-3664-44f8-9b12-a486f0ad8c0f,Pure Word Missionary Baptist Church,Food Pantry,"20011 Grand River Ave, Detroit, MI 48219",(313)862-5900,,,WED: 10:00am - 2:00pm; FRI: 10:00am - 2:00pm,,No
+497e2e24-c55e-4d81-8d6e-094e5d8f1c02,Puritan St. Church of Christ,Food Pantry,"19451 Conant, Detroit, MI 48234",(313)893-1002,,,THU: Every other Thursday 8:30am - 12:00pm,,No
+3c632b80-3ab6-4cd5-b68b-b5f1188a1283,Salvation Army Conner Creek Corps and Community Center,Food Pantry,"3000 Conner Ave., Detroit, MI 48215",(313)822-2800,,,MON–FRI: 9:00am - 4:00pm,,No
+81d702fd-c619-4e18-bfab-927c61747d39,Salvation Army Grandale,Food Pantry,"11325 Montrose, Detroit, MI 48227",(313)835-3736,,,MON–FRI: 12:30pm - 4:30pm (Appointment Required),,Yes
+b6072749-dcf1-4079-9eb2-d740b614dfd4,Salvation Army Temple,Food Pantry,"3729 W. Chicago, Detroit, MI 48206",(313)897-2914,,,THU: 10:00am - 11:30am,,Yes
+8b233caa-2502-4ec2-9104-e9973760d34f,Scott Memorial United Methodist Church,Food Pantry,"15361 Plymouth Rd., Detroit, MI 48227",313-836-6301,,,FRI: 3rd Fridays 10:30am - 12:30pm,,No
+fd58ff70-bbc1-4e7a-b5c8-cb3841c7e188,Shrine of the Black Madonna,Food Pantry,"7625 Linwood, Detroit, MI 48206",313-244-6660,,,SAT: 3rd Saturday: 11:00am - 1:00pm,,No
+f9fb181b-005e-4b22-a400-fdb1ff2ff406,St. John Community Center,Food Pantry,"14320 Kercheval, Detroit, MI 48215",313-823-8323,,,FRI: 1:00pm (Serving the Lower East Side),,No
+cb3a3e3f-44c7-4cf0-86cc-acaba1a77e2d,St. Peter Claver S.V.D.P. @ Mt. Lebanon Strathmoor Church,Food Pantry,"14400 Puritan, Detroit, MI 48227",(313)342-5292,,,TUE: 10:00am - 12:30pm,,No
+344a1de9-dad5-46bc-b45e-d07676bbd8c6,St. Suzanne Cody Rouge Community Resource Center,Food Pantry,"19321 W. Chicago, Detroit, MI 48228",(313) 493-9129,,,THU: By appointment,,Yes
+82a283eb-2b32-4c9d-8a89-d67e89c06346,St. Timothy United Methodist Church,Food Pantry,"15888 Archdale, Detroit, MI 48227",,,,,,No
+39af162b-184a-41b8-a1ce-3e29ee71cd40,The Open Door COGIC,Food Pantry,"12411 E. Seven Mile Road, Detroit, MI 48205",(313)645-8644,,,MON: 1st and 3rd Mondays 9:30am - 12:30pm,,No
+3065a1e6-68ea-4cba-af99-c07c9b6a42c6,The Pope Francis Center,Soup Kitchen,"438 Saint Antoine Street, Detroit, MI 48226",(313) 964-2823,,,MON–SAT: 7:00am - 11:00am,,No
+2b17465d-3b7d-4631-a151-5b07ad5f3646,"Tri-Unity Enterprise, Inc. @ 3rd New Hope",Food Pantry,"12850 Plymouth Rd., Detroit, MI 48227",(313) 491-7890 ext 13,,,FRI: 4th Fridays 9:00am - 12:00pm,,Yes
+ee7beeb7-ebea-4589-84c9-b86a93ddddf6,True Love Evangelistic Ministries,Food Pantry,"20501 Plymouth Rd., Detroit, MI 48228",(313) 342-2182,,,SAT: 3rd Saturdays 9:30am (Please bring ID),,No
+0e0c0ec7-56c4-4dfa-ae4f-244ee13b50e6,Twelfth St. Food Pantry / Twelfth St. Missionary Baptist Church,Food Pantry,"1840 Midland, Detroit, MI 48238",313-868-2659,,,FRI: Every other Friday 10:00am - 12:00pm; 1:00pm - 3:00pm,,No
+4dbb1189-3c5a-4291-b328-9b89670b8b6d,Urban Neighborhood Initiative (Drive-Up Only),Food Pantry,"8300 Longworth, Detroit, MI 48209",,,,,,No
+39c756fb-6cbf-4cd5-84a2-8b78610b19e2,Urban Neighborhood Initiative - Walk-Up Service,Food Pantry,"8300 Longworth, Detroit, MI 48209",,,,Select Fridays: 9:00am - 10:00am (see dates),,No
+c68e7c22-4eec-4053-8cc6-6c1253603545,Word In Action Christian Center,Food Pantry,"19760 Meyers Rd., Detroit, MI 48235",(313)864-5300,,,FRI: 3rd Fridays 12:00pm - 3:00pm,,No
+7ffb6a9b-8d87-4ddb-b0dd-64b5a3cba20f,Word Of Truth,Food Pantry,"4900 Lovett St., Detroit, MI 48210",313-897-5213,,,SAT: 1st Saturdays 10:00am - 1:00pm,,No
+5f423735-ddcb-428b-bb9d-8aec800c045a,Bridging Communities,Community Fridge,"6900 McGraw Ave, Detroit, MI 48210",,,,Open 24/7,,No
+74ec006c-e4dd-44e1-8da1-b7a84bf114f1,Field Street Community Fridge,Community Fridge,"1812 Field Street, Detroit, MI 48214",,,,Open 24/7,,No
+0e61a118-2a0d-44b1-91f1-7ca8f0b87e90,Georgia St Community Collective Fridge,Community Fridge,"8902 Vinton Ave, Detroit, MI 48213",,,,Open 24/7,,No
+4d72bf2e-988c-4e4e-80f3-c0a2c2ef7c3c,Detroit Heals Detroit Community Fridge,Community Fridge,"19510 Alcoy Ave, Detroit, MI 48205",,,,Open 24/7,,No
+3f1fbc8b-4b34-469c-9135-ef2c3cd4c035,BasBlue Community Supper,Hot Meal,"110 E Ferry St, Detroit, MI 48202",,,,MON: 5:00pm – 7:00pm,,No
+053b75de-408b-4e08-93f1-6a064936454c,Adams Butzel Center (CACFP),Youth Supper (CACFP),"10500 Lyndon, Detroit, MI 48238",,,,MON–FRI: 4:30pm–6:30pm,,No
+de4887a4-3b4e-4653-bd39-f967794151fb,Farwell Recreation Center (CACFP),Youth Supper (CACFP),"2711 E Outer Dr, Detroit, MI 48234",,,,WED & FRI: 4:30pm–6:30pm,,No
+818845c9-cfa0-428a-b33f-5c67c8a98f8b,Kemeny Recreation Center (CACFP),Youth Supper (CACFP),"2260 S Fort St, Detroit, MI 48217",,,,MON–FRI: 4:30pm–6:30pm,,No
+c7578ba8-5a8b-4e9f-a1bd-5ad8d5b818a3,Racquet Up (CACFP),Youth Supper (CACFP),"6530 W Outer Dr, Detroit, MI 48235",,,,MON–THU: 4:30pm–6:30pm,,No
+e0a2ef64-2ed4-4831-8e22-97b1f9e36644,Patton Recreation Center (CACFP),Youth Supper (CACFP),"2301 Woodmere, Detroit, MI 48209",,,,MON–FRI (except WED): 4:30pm–6:30pm,,No
+fcfa98a6-2618-4484-80a5-d61a5b56b239,Adams Butzel Recreation (DAAA Senior Meals),Senior Meals,"10500 Lyndon, Detroit, MI 48238",,,,WED: 11:30am–1:00pm,,No
+959da755-3640-4aa3-88e5-066bc3b245b0,Buzel Family Center (DAAA Senior Meals),Senior Meals,"7737 Kercheval, Detroit, MI 48214",,,,WED: 11:00am–12:30pm,,No
+0ec6bb60-9695-46dc-9c74-1aa59fe1741b,Patton Recreation Center (DAAA Senior Meals),Senior Meals,"2301 Woodmere, Detroit, MI 48209",,,,WED: 11:30am–1:00pm,,No
+2831e018-ef1f-4933-9a5e-39de2f647643,Joseph Walker Williams Recreation Center (DAAA Senior Meals),Senior Meals,"8431 Rosa Parks Blvd, Detroit, MI 48206",,,,WED: 11:30am–1:00pm,,No
+d04b0b0a-ff2f-4e0f-b215-4d398b505884,Northwest Activities Center – Gleaners Groceries,Grocery Distribution,"18100 Meyers Rd, Detroit, MI 48235",(313) 578-7500,,,Every other MON: 2:00pm–4:00pm,,No
+b590ca6d-ed88-4c87-8ca5-78b53cb73927,Second Ebenezer Church Food Pantry,,"14601 Dequindre St, Detroit, MI 48212",(313) 867-4700,,,,,No
+0e8576d6-0500-478b-942b-9af14dc61862,St. Christine Christian Services,,"15317 Dacosta St, Detroit, MI 48223",(313) 535-7272,,,,,No
+b23e1542-95d0-443c-bef5-3bbb2ee1bdaf,Central United Methodist Church,,"23 E Adams Ave, Detroit, MI 48226",(313) 965-5422,,,,,No
+a2fb97ee-3d8d-423a-90ba-8ecdffbbf70f,Detroit Rescue Mission Ministries,,"3535 Third Ave, Detroit, MI 48201",(313) 993-4700,,,,,No
+56f5befd-8bf0-44b5-bf82-f924f52ae1c0,Zion Hope Baptist Church,,"4800 Van Dyke St, Detroit, MI 48214",(313) 924-1530,,,,,No
+77b4e208-6771-4fc6-baf3-59b3b143fe55,Bethel AME Church,,"5050 St Antoine St, Detroit, MI 48202",(313) 833-9300,,,,,No
+d2ddb223-d5ef-4ad7-8f8e-5eddaf3dc8bf,St. Vincent de Paul Detroit,,"3000 Gratiot Ave, Detroit, MI 48207",(313) 393-2930,,,,,No
+015f2d57-7c9b-4b18-bd60-e2f7ddad761e,Greater Shiloh Baptist Church,,"557 Benton St, Detroit, MI 48202",(313) 872-4850,,,,,No
+0c76bbe1-858b-4052-8fdf-77f4a3cbeb66,Church of the Messiah,,"231 E Grand Blvd, Detroit, MI 48207",(313) 633-5331,,,,,No
+cd5716f7-0d54-464a-8b04-11187e27ccbd,New Bethel Baptist Church,,"8430 Linwood St, Detroit, MI 48206",(313) 894-3134,,,,,No
+a2f9af01-c98f-4132-9302-1aed38f5cf62,Good Shepherd Lutheran Church,,"814 N Campbell St, Detroit, MI 48209",(313) 841-2911,,,,,No

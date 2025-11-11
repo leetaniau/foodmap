@@ -117,7 +117,7 @@ export default function Home() {
         <div className="grid grid-cols-3 items-center mb-1">
           <div></div>
           <img 
-            src={ChatGPT_Image_Nov_6__2025__11_13_56_AM} 
+            src="assets/ChatGPT Image Nov 6, 2025, 11_13_56 AM_1762445808899.png" 
             alt="Food in the D" 
             className="w-40 h-auto justify-self-center"
             data-testid="img-logo"

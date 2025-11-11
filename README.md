@@ -106,16 +106,16 @@ Located in `/scripts/`:
 ## Data Format
 
 Your CSV should include these columns:
-- Name
-- Address
-- City
-- State
-- Zip
-- Type (Food Pantry, Community Fridge, Hot Meals)
-- Hours
-- Phone
-- Website
-- Description
+- **id** - Unique identifier (optional, will auto-generate if not provided)
+- **name** - Name of the food resource
+- **type** - Type of resource (Food Pantry, Community Fridge, Hot Meal, Soup Kitchen, etc.)
+- **address** - Full address including city, state, and zip code (e.g., "123 Main St, Detroit, MI 48201")
+- **phone** - Contact phone number (optional)
+- **latitude** - Latitude coordinate (leave empty if you'll geocode later)
+- **longitude** - Longitude coordinate (leave empty if you'll geocode later)
+- **hours** - Operating hours (e.g., "MON-FRI: 9:00am-5:00pm")
+- **distance** - Distance information (optional, used for display purposes)
+- **appointment_required** - Whether appointment is needed (Yes, No, or leave empty)
 
 See `/data/sample-food-resources.csv` for an example.
 

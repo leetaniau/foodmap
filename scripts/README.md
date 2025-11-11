@@ -19,7 +19,9 @@ npx tsx scripts/import-csv-to-db.ts data/your-file.csv
 - Reports success/failure for each entry
 
 **CSV Format Required:**
-- Name, Address, City, State, Zip, Type, Hours, Phone, Website, Description
+- id, name, type, address, phone, latitude, longitude, hours, distance, appointment_required
+
+**Note:** The `id`, `latitude`, `longitude`, `distance`, and `appointment_required` fields are optional. If `latitude` and `longitude` are empty, you can geocode them later using the `geocode-addresses.ts` script.
 
 ---
 
@@ -32,14 +34,35 @@ npx tsx scripts/geocode-addresses.ts
 ```
 
 **What it does:**
-- Finds all resources without coordinates in the database
-- Uses Geoapify API to geocode addresses
+- Automatically finds all resources without coordinates in the database
+- Validates API key before starting
+- Uses Geoapify API to geocode addresses with retry logic
+- Handles rate limiting intelligently
+- Validates coordinates are in expected geographic area
 - Updates database with latitude and longitude
-- Required for resources to appear on the map
+- Saves detailed results to `geocoding-results.json`
+- Saves failed addresses to `geocoding-failed.json` for manual review
+
+**Features that make it foolproof:**
+- ✓ API key validation before processing
+- ✓ Automatic retry on failures (3 attempts per address)
+- ✓ Rate limit handling with exponential backoff
+- ✓ Geographic bounds validation (warns if coordinates seem wrong)
+- ✓ Empty address detection
+- ✓ Progress tracking with detailed logs
+- ✓ Exports failed addresses for manual fixing
+- ✓ Success rate reporting
 
 **Requirements:**
-- `GEOAPIFY_API_KEY` environment variable must be set
+- `GEOAPIFY_API_KEY` or `VITE_GEOAPIFY_API_KEY` environment variable must be set
 - Free tier allows 3,000 requests per day
+- Get a free key at: https://www.geoapify.com/
+
+**Troubleshooting:**
+- If geocoding fails, check `geocoding-failed.json` for details
+- Verify addresses include city, state, and zip code
+- Test problematic addresses at https://www.geoapify.com/tools/geocoding-online
+- You can manually add coordinates to CSV and re-import
 
 ---
 

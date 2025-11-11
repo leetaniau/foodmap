@@ -97,7 +97,11 @@ async function parseCSV(filePath: string): Promise<CSVRow[]> {
 async function main() {
   console.log('Starting CSV import process...\n');
 
-  const csvPath = path.join(process.cwd(), 'New Folder With Items 2', 'Imported table-Grid view.csv');
+  // Get CSV path from command line argument or use default
+  const csvFile = process.argv[2] || path.join(process.cwd(), 'data', 'sample-food-resources.csv');
+  const csvPath = csvFile.startsWith('/') ? csvFile : path.join(process.cwd(), csvFile);
+
+  console.log(`Reading CSV from: ${csvPath}\n`);
   const rows = await parseCSV(csvPath);
 
   console.log(`Found ${rows.length} rows in CSV\n`);
@@ -137,9 +141,13 @@ async function main() {
         resourceType = 'Food Pantry';
       }
 
+      // Parse appointment_required field
+      const appointmentRequired = row.appointment_required?.toLowerCase() === 'yes' ||
+                                   row.appointment_required?.toLowerCase() === 'true';
+
       // Insert into database
       await db.insert(foodResources).values({
-        id: row.id,
+        id: row.id || undefined, // Let DB generate if not provided
         name: row.name,
         type: resourceType,
         address: row.address,
@@ -147,6 +155,8 @@ async function main() {
         longitude: lon,
         hours: row.hours || null,
         distance: row.distance || null,
+        phone: row.phone || null,
+        appointmentRequired: appointmentRequired,
       });
 
       successCount++;

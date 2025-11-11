@@ -1,21 +1,8 @@
-import { db } from './server/db';
+import { db } from '../server/db';
 import { foodResources } from '@shared/schema';
-import { eq } from 'drizzle-orm';
+import { eq, or, isNull } from 'drizzle-orm';
 import * as fs from 'fs';
 import * as path from 'path';
-
-interface CSVRow {
-  id: string;
-  name: string;
-  type: string;
-  address: string;
-  phone: string;
-  latitude: string;
-  longitude: string;
-  hours: string;
-  distance: string;
-  appointment_required: string;
-}
 
 interface GeoapifyResponse {
   features: Array<{
@@ -23,132 +10,273 @@ interface GeoapifyResponse {
       lat: number;
       lon: number;
       formatted: string;
+      result_type?: string;
+      rank?: {
+        confidence: number;
+      };
     };
   }>;
 }
 
-const GEOAPIFY_API_KEY = process.env.VITE_GEOAPIFY_API_KEY;
+const GEOAPIFY_API_KEY = process.env.VITE_GEOAPIFY_API_KEY || process.env.GEOAPIFY_API_KEY;
+const MAX_RETRIES = 3;
+const RATE_LIMIT_DELAY = 250; // ms between requests
+const RETRY_DELAY = 1000; // ms to wait before retry
 
-async function geocodeAddress(address: string): Promise<{ lat: number; lon: number } | null> {
-  if (!GEOAPIFY_API_KEY) {
-    throw new Error('Geoapify API key not found');
-  }
+// Detroit bounding box for validation (optional - adjust for your city)
+const DETROIT_BOUNDS = {
+  minLat: 42.0,
+  maxLat: 43.0,
+  minLon: -83.5,
+  maxLon: -82.5
+};
 
-  try {
-    const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=${GEOAPIFY_API_KEY}`;
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      console.error(`Failed to geocode ${address}: ${response.statusText}`);
-      return null;
-    }
-
-    const data: GeoapifyResponse = await response.json();
-
-    if (data.features && data.features.length > 0) {
-      const { lat, lon } = data.features[0].properties;
-      return { lat, lon };
-    }
-
-    console.warn(`No results found for address: ${address}`);
-    return null;
-  } catch (error) {
-    console.error(`Error geocoding ${address}:`, error);
-    return null;
-  }
+interface GeocodingResult {
+  name: string;
+  address: string;
+  success: boolean;
+  lat?: number;
+  lon?: number;
+  error?: string;
+  confidence?: number;
 }
 
-async function parseCSV(filePath: string): Promise<CSVRow[]> {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const lines = content.split('\n');
-  const headers = lines[0].replace(/^\uFEFF/, '').split(','); // Remove BOM if present
-
-  const rows: CSVRow[] = [];
-
-  for (let i = 1; i < lines.length; i++) {
-    if (!lines[i].trim()) continue;
-
-    // Parse CSV line accounting for quoted fields
-    const values: string[] = [];
-    let currentValue = '';
-    let inQuotes = false;
-
-    for (let j = 0; j < lines[i].length; j++) {
-      const char = lines[i][j];
-
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
-        values.push(currentValue);
-        currentValue = '';
-      } else {
-        currentValue += char;
-      }
-    }
-    values.push(currentValue); // Push the last value
-
-    const row: any = {};
-    headers.forEach((header, index) => {
-      row[header.trim()] = values[index]?.trim() || '';
-    });
-
-    rows.push(row as CSVRow);
+async function geocodeAddressWithRetry(
+  address: string,
+  retries = MAX_RETRIES
+): Promise<{ lat: number; lon: number; confidence: number } | null> {
+  if (!GEOAPIFY_API_KEY) {
+    throw new Error('GEOAPIFY_API_KEY or VITE_GEOAPIFY_API_KEY environment variable is required');
   }
 
-  return rows;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(address)}&apiKey=${GEOAPIFY_API_KEY}`;
+      const response = await fetch(url);
+
+      // Handle rate limiting
+      if (response.status === 429) {
+        console.warn(`  ⚠ Rate limit hit, waiting ${RETRY_DELAY * attempt}ms...`);
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * attempt));
+        continue;
+      }
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data: GeoapifyResponse = await response.json();
+
+      if (data.features && data.features.length > 0) {
+        const feature = data.features[0];
+        const { lat, lon } = feature.properties;
+        const confidence = feature.properties.rank?.confidence || 0;
+
+        // Validate coordinates are within expected bounds (optional)
+        if (lat < DETROIT_BOUNDS.minLat || lat > DETROIT_BOUNDS.maxLat ||
+            lon < DETROIT_BOUNDS.minLon || lon > DETROIT_BOUNDS.maxLon) {
+          console.warn(`  ⚠ Warning: Coordinates outside Detroit area (${lat}, ${lon})`);
+          console.warn(`    Formatted: ${feature.properties.formatted}`);
+          // Continue anyway - don't fail, just warn
+        }
+
+        return { lat, lon, confidence };
+      }
+
+      console.warn(`  ⚠ No results found for address (attempt ${attempt}/${retries})`);
+
+      if (attempt < retries) {
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+      }
+
+    } catch (error: any) {
+      console.error(`  ✗ Error on attempt ${attempt}/${retries}: ${error.message}`);
+
+      if (attempt < retries) {
+        console.log(`  ↻ Retrying in ${RETRY_DELAY}ms...`);
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+      }
+    }
+  }
+
+  return null;
+}
+
+async function validateApiKey(): Promise<boolean> {
+  if (!GEOAPIFY_API_KEY) {
+    console.error('❌ ERROR: No API key found!');
+    console.error('Please set GEOAPIFY_API_KEY or VITE_GEOAPIFY_API_KEY in your .env file');
+    console.error('Get a free key at: https://www.geoapify.com/');
+    return false;
+  }
+
+  console.log('✓ API key found, testing...');
+
+  try {
+    const testUrl = `https://api.geoapify.com/v1/geocode/search?text=Detroit&apiKey=${GEOAPIFY_API_KEY}`;
+    const response = await fetch(testUrl);
+
+    if (response.status === 401 || response.status === 403) {
+      console.error('❌ ERROR: API key is invalid or expired');
+      return false;
+    }
+
+    if (!response.ok) {
+      console.error(`❌ ERROR: API test failed with status ${response.status}`);
+      return false;
+    }
+
+    console.log('✓ API key is valid\n');
+    return true;
+  } catch (error: any) {
+    console.error(`❌ ERROR: Could not validate API key: ${error.message}`);
+    return false;
+  }
 }
 
 async function main() {
-  console.log('Starting geocoding process...\n');
+  console.log('=== Geocoding Tool ===\n');
 
-  const csvPath = path.join(process.cwd(), 'New Folder With Items 2', 'Imported table-Grid view.csv');
-  const rows = await parseCSV(csvPath);
+  // Validate API key first
+  const apiKeyValid = await validateApiKey();
+  if (!apiKeyValid) {
+    process.exit(1);
+  }
 
-  console.log(`Found ${rows.length} total rows in CSV`);
+  // Find resources missing coordinates from database
+  console.log('Searching database for resources missing coordinates...\n');
 
-  // Find rows missing coordinates
-  const missingCoords = rows.filter(row => !row.latitude || !row.longitude);
-  console.log(`Found ${missingCoords.length} rows missing coordinates\n`);
+  const resourcesMissingCoords = await db
+    .select()
+    .from(foodResources)
+    .where(
+      or(
+        isNull(foodResources.latitude),
+        isNull(foodResources.longitude),
+        eq(foodResources.latitude, ''),
+        eq(foodResources.longitude, '')
+      )
+    );
 
+  console.log(`Found ${resourcesMissingCoords.length} resources needing geocoding\n`);
+
+  if (resourcesMissingCoords.length === 0) {
+    console.log('✓ All resources already have coordinates!');
+    process.exit(0);
+  }
+
+  const results: GeocodingResult[] = [];
   let successCount = 0;
   let failCount = 0;
 
-  for (const row of missingCoords) {
-    console.log(`Geocoding: ${row.name} - ${row.address}`);
+  for (let i = 0; i < resourcesMissingCoords.length; i++) {
+    const resource = resourcesMissingCoords[i];
+    console.log(`[${i + 1}/${resourcesMissingCoords.length}] ${resource.name}`);
+    console.log(`  Address: ${resource.address}`);
 
-    const coords = await geocodeAddress(row.address);
+    // Validate address is not empty
+    if (!resource.address || resource.address.trim() === '') {
+      console.error('  ✗ Empty address, skipping');
+      results.push({
+        name: resource.name,
+        address: resource.address,
+        success: false,
+        error: 'Empty address'
+      });
+      failCount++;
+      continue;
+    }
+
+    const coords = await geocodeAddressWithRetry(resource.address);
 
     if (coords) {
-      console.log(`  ✓ Found: ${coords.lat}, ${coords.lon}`);
+      console.log(`  ✓ Geocoded: ${coords.lat}, ${coords.lon} (confidence: ${coords.confidence})`);
 
       try {
         // Update the database
-        await db.update(foodResources)
+        await db
+          .update(foodResources)
           .set({
             latitude: coords.lat.toString(),
             longitude: coords.lon.toString(),
           })
-          .where(eq(foodResources.id, row.id));
+          .where(eq(foodResources.id, resource.id));
+
+        console.log(`  ✓ Updated database\n`);
+
+        results.push({
+          name: resource.name,
+          address: resource.address,
+          success: true,
+          lat: coords.lat,
+          lon: coords.lon,
+          confidence: coords.confidence
+        });
 
         successCount++;
-        console.log(`  ✓ Updated database`);
-      } catch (error) {
-        console.error(`  ✗ Failed to update database:`, error);
+      } catch (error: any) {
+        console.error(`  ✗ Failed to update database: ${error.message}\n`);
+
+        results.push({
+          name: resource.name,
+          address: resource.address,
+          success: false,
+          error: `Database update failed: ${error.message}`
+        });
+
         failCount++;
       }
     } else {
-      console.log(`  ✗ Could not geocode`);
+      console.log(`  ✗ Could not geocode after ${MAX_RETRIES} attempts\n`);
+
+      results.push({
+        name: resource.name,
+        address: resource.address,
+        success: false,
+        error: 'Geocoding failed after retries'
+      });
+
       failCount++;
     }
 
-    // Rate limiting - wait 200ms between requests
-    await new Promise(resolve => setTimeout(resolve, 200));
+    // Rate limiting between requests
+    if (i < resourcesMissingCoords.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, RATE_LIMIT_DELAY));
+    }
+  }
+
+  // Save results to file
+  const resultsPath = path.join(process.cwd(), 'geocoding-results.json');
+  fs.writeFileSync(resultsPath, JSON.stringify(results, null, 2));
+  console.log(`\n✓ Detailed results saved to: ${resultsPath}`);
+
+  // Save failed addresses to separate file for manual review
+  const failed = results.filter(r => !r.success);
+  if (failed.length > 0) {
+    const failedPath = path.join(process.cwd(), 'geocoding-failed.json');
+    fs.writeFileSync(failedPath, JSON.stringify(failed, null, 2));
+    console.log(`✓ Failed addresses saved to: ${failedPath} for manual review`);
   }
 
   console.log(`\n=== Geocoding Complete ===`);
-  console.log(`Success: ${successCount}`);
-  console.log(`Failed: ${failCount}`);
-  console.log(`Total processed: ${missingCoords.length}`);
+  console.log(`✓ Success: ${successCount}`);
+  console.log(`✗ Failed: ${failCount}`);
+  console.log(`Total processed: ${resourcesMissingCoords.length}`);
+  console.log(`Success rate: ${((successCount / resourcesMissingCoords.length) * 100).toFixed(1)}%`);
+
+  if (failCount > 0) {
+    console.log(`\n⚠ Some addresses failed to geocode. Check geocoding-failed.json for details.`);
+    console.log('Tips for fixing failed geocodes:');
+    console.log('  - Verify addresses are complete with city, state, and zip');
+    console.log('  - Check for typos or formatting issues');
+    console.log('  - Try manually geocoding at https://www.geoapify.com/tools/geocoding-online');
+    console.log('  - You can manually add coordinates to your CSV and re-import');
+  }
+
+  process.exit(failCount > 0 ? 1 : 0);
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error('\n❌ Fatal error:', error);
+  process.exit(1);
+});

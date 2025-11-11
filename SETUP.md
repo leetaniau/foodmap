@@ -42,16 +42,16 @@ This guide will help you set up your own food resource map, even if you're not a
 2. Open `sample-food-resources.csv`
 3. This shows you the format your data needs to be in
 4. Prepare your own CSV file with these columns:
-   - **Name**: Name of the food resource
-   - **Address**: Street address
-   - **City**: City name
-   - **State**: State abbreviation (e.g., MI)
-   - **Zip**: Zip code
-   - **Type**: Choose from: Food Pantry, Community Fridge, Hot Meals
-   - **Hours**: Operating hours
-   - **Phone**: Contact phone number
-   - **Website**: Website URL (if available)
-   - **Description**: Brief description
+   - **id**: Unique identifier (optional, will auto-generate if not provided)
+   - **name**: Name of the food resource
+   - **type**: Type of resource (Food Pantry, Community Fridge, Hot Meal, Soup Kitchen, etc.)
+   - **address**: Full address including city, state, and zip (e.g., "123 Main St, Detroit, MI 48201")
+   - **phone**: Contact phone number (optional)
+   - **latitude**: Latitude coordinate (leave empty if you'll geocode addresses later)
+   - **longitude**: Longitude coordinate (leave empty if you'll geocode addresses later)
+   - **hours**: Operating hours (e.g., "MON-FRI: 9:00am-5:00pm")
+   - **distance**: Distance information (optional, for display purposes)
+   - **appointment_required**: Whether appointment is needed (Yes, No, or leave empty)
 
 #### Step 4: Import Your Data
 
@@ -197,7 +197,7 @@ center={[42.3314, -83.0458]}  // Detroit coordinates
 
 1. Create a CSV file with these columns:
    ```
-   Name,Address,City,State,Zip,Type,Hours,Phone,Website,Description
+   id,name,type,address,phone,latitude,longitude,hours,distance,appointment_required
    ```
 
 2. Save your CSV file in the `data/` folder
@@ -207,7 +207,7 @@ center={[42.3314, -83.0458]}  // Detroit coordinates
    npx tsx scripts/import-csv-to-db.ts data/your-file.csv
    ```
 
-4. Geocode the addresses:
+4. Geocode the addresses (if latitude/longitude are empty):
    ```bash
    npx tsx scripts/geocode-addresses.ts
    ```

@@ -115,7 +115,7 @@ export default function Home() {
         <div className="grid grid-cols-3 items-center mb-1">
           <div></div>
           <img 
-            src={logoImage} 
+            src="assets/logo.png" 
             alt="Food in the D" 
             className="w-40 h-auto justify-self-center"
             data-testid="img-logo"
@@ -164,7 +164,6 @@ export default function Home() {
           </Button>
         </div>
       </div>
-
       <div className="flex-1 min-h-0 relative overflow-hidden">
         {view === 'map' ? (
           <ResourceMap
@@ -194,14 +193,12 @@ export default function Home() {
           </div>
         )}
       </div>
-
       <div className="flex-none border-t p-2">
         <FilterPills
           activeFilter={activeFilter}
           onFilterChange={setActiveFilter}
         />
       </div>
-
       <AddToHomeModal
         isOpen={showAddToHome}
         onClose={() => setShowAddToHome(false)}

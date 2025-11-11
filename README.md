@@ -30,8 +30,9 @@ Want to create a food map for your own city?
 1. Copy this project
 2. Replace the sample data in `/data/` with your own food resources
 3. Update the map center location in the client code
-4. Change branding and colors to match your community
-5. Deploy and share!
+4. Replace the logo in `/assets/logo.png` with your own
+5. Change branding and colors to match your community
+6. Deploy and share!
 
 ## For Developers
 

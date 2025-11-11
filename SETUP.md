@@ -167,12 +167,12 @@ npm start
 
 ### Change the Map Center Location
 
-1. Open `client/src/pages/MapView.tsx` (or wherever your map component is)
-2. Find the map initialization
+1. Open `client/src/pages/Home.tsx`
+2. Find line 23 where the default user location is set
 3. Change the center coordinates to your city:
 
 ```typescript
-center={[42.3314, -83.0458]}  // Detroit coordinates
+const [userLocation, setUserLocation] = useState<[number, number]>([42.3314, -83.0458]); // Detroit coordinates
 // Change to your city, e.g., [40.7128, -74.0060] for NYC
 ```
 
@@ -181,6 +181,31 @@ center={[42.3314, -83.0458]}  // Detroit coordinates
 1. Open `tailwind.config.ts`
 2. Modify the colors in the theme section
 3. Update the app name in `client/index.html`
+
+### Change the Logo
+
+To customize the logo for your own food map:
+
+1. **Prepare your logo image:**
+   - Recommended format: PNG with transparent background
+   - Recommended size: 400-800px width for good quality
+   - Save it with a simple name like `logo.png`
+
+2. **Add your logo to the project:**
+   - Place your logo file in the `assets/` folder
+   - Replace the existing `logo.png` or use a different filename
+
+3. **Update the code (if using a different filename):**
+   - Open `client/src/pages/Home.tsx`
+   - Find line 12: `import logoImage from '@assets/logo.png';`
+   - Change `logo.png` to your filename (e.g., `my-logo.png`)
+
+4. **Adjust logo size (optional):**
+   - In `client/src/pages/Home.tsx`, find the `<img>` tag (around line 117)
+   - Modify the `className` to adjust width: `className="w-40 h-auto justify-self-center"`
+   - Change `w-40` to a different size (e.g., `w-32` for smaller, `w-48` for larger)
+
+That's it! Your custom logo will now appear on the homepage.
 
 ### Change Resource Types
 

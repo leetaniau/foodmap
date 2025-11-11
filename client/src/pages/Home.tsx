@@ -11,6 +11,8 @@ import AddToHomeModal from '@/components/AddToHomeModal';
 import { FoodResource } from '@shared/schema';
 import logoImage from '@assets/ChatGPT Image Nov 6, 2025, 11_13_56 AM_1762445808899.png';
 
+import ChatGPT_Image_Nov_6__2025__11_13_56_AM from "@assets/ChatGPT Image Nov 6, 2025, 11_13_56 AM.png";
+
 type View = 'map' | 'list' | 'detail';
 
 export default function Home() {
@@ -115,7 +117,7 @@ export default function Home() {
         <div className="grid grid-cols-3 items-center mb-1">
           <div></div>
           <img 
-            src="assets/logo.png" 
+            src={ChatGPT_Image_Nov_6__2025__11_13_56_AM} 
             alt="Food in the D" 
             className="w-40 h-auto justify-self-center"
             data-testid="img-logo"
